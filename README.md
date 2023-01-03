@@ -2,7 +2,7 @@
 
 <img src="classifyingHat/static/classifyingHat/logo.svg" alt="The Classifying Hat" width=200/>
 
-[![status-badge](https://woodpecker.peprolinbot.com/api/badges/peprolinbot/classifying-hat/status.svg)](https://woodpecker.peprolinbot.com/peprolinbot/classifying-hat)
+[![Docker Repository on Quay](https://quay.io/repository/peprolinbot/classifying-hat/status "Docker Repository on Quay")](https://quay.io/repository/peprolinbot/classifying-hat)
 
 Discover to which Hogwart's house you belong with the help of a magical machine learning model, which should provide a more scientifically accurate result than your typical test.
 
