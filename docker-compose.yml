@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  classifying-hat:
+    image: quay.io/peprolinbot/classifying-hat:latest
+    restart: unless-stopped
+    environment:
+      - DJANGO_ALLOWED_HOSTS=clashat.peprolinbot.com
+      - DJANGO_SECRET_KEY=changemetosomethingsecureplease
+    ports:
+      - 8080:80
