@@ -10,11 +10,15 @@
 {% block content %}
 <div class="bg-image"></div>
 
-<div>
+<header>
     <img class="page-text-logo" src="{% static 'classifyingHat/text_logo.png' %}" alt="The Classifying Hat logo">
-</div>
+</header>
 
 <div class="center">
     {% block centered_content %}{% endblock %}
 </div>
+
+<footer>
+    <p>Made with ❤️ by peprolinbot - <a href="https://codeberg.org/peprolinbot/classifying-hat" target="_blank">Source Code</a></p>
+</footer>
 {% endblock %}
