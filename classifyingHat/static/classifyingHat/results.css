@@ -1,0 +1,23 @@
+.house-name {
+    text-align: center;
+    margin: auto;
+
+    font-size: 50px;
+}
+
+div.house-logo {
+    margin-top: 20px;
+    text-align: center;
+}
+
+img.house-logo {
+    width: 70%;
+}
+
+.house-traits {
+    font-size: 35px;
+
+    text-align: center;
+    
+    margin-top: 20px;
+}

@@ -1,0 +1,24 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content='maximum-scale=1.0, initial-scale=1.0, width=device-width' name='viewport'>
+    <meta name="description"
+        content="Discover to which Hogwart's house you belong with the help of a magical machine learning model, which should provide a more scientifically accurate result than your typical test.">
+    <meta name="author" content="peprolinbot">
+    <link rel="icon" href="{% static 'classifyingHat/logo.svg' %}">
+
+    <title>{% block title %}Classifying Hat{% endblock %}</title>
+
+    <!-- Custom CSS -->
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    {% block content %}{% endblock %}
+</body>
+
+</html>

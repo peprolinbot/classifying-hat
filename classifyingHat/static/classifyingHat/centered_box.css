@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+}
+
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg-image {
+    background-image: url("/static/classifyingHat/background.jpg");
+
+    height: 100%;
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg-image::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(10px);
+    pointer-events: none;
+}
+
+.page-text-logo {
+    max-height: 15%;
+    max-width: 90%;
+
+    position: absolute;
+    top: 10%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+.center {
+    width: 30%;
+    height: 80%;
+
+    position: absolute;
+    top: 15%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    overflow: auto;
+
+    padding: 20px;
+
+    margin: auto;
+
+    background-color: rgba(46, 46, 46, 0.692);
+    background-image: linear-gradient(45deg, #05277eb0, #401b70b0);
+
+    border-radius: 12px;
+}
+
+/* Hide scrollbar for Chrome and webkit browsers */
+.center::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.center {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+@media screen and (max-width: 1335px) {
+    .center {
+        width: 90%;
+    }
+}
+
+.hp-font {
+    font-family: 'Lucida Handwriting', 'Brush Script MT', cursive;
+    font-weight: bold;
+    color: darkgoldenrod;
+}

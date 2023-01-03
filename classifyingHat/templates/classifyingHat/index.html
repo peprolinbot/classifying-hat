@@ -1,0 +1,29 @@
+{% extends 'classifyingHat/centered_box.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'classifyingHat/index.css' %}">
+{% endblock %}
+
+{% block centered_content %}
+<form action="/" method="post" class="hp-font">
+    {% csrf_token %}
+    {{ form }}
+    <button class="hp-font" type="submit">Submit</button>
+</form>
+
+<p class="tutorial hp-font">Enter your results id for the open-source BigFive personality test. You can take it <a
+        href="https://bigfive-test.com" target="_blank">here</a>.</p>
+
+<p class="article hp-font">Yeah, the name is a joke, beacause this uses what's known as a 'classifier' model. If you're
+    a muggle
+    (you don't know the magic spells of coding and probably use Windows or MacOS) you could say this is Hacendado's
+    Soritng Hat.</p>
+<p class="article hp-font">This uses the data collected in
+    <a href="https://online.ucpress.edu/collabra/article/5/1/31/113037/The-Science-Behind-the-Magic-The-Relation-of-the"
+        target="_blank">The Science Behind the Magic? The Relation of the Harry Potter
+        “Sorting Hat Quiz” to Personality and Human
+        Values</a>
+    by Lea Jakob, Eduardo Garcia-Garzon, Hannes Jarke, and Fabian Dablander.
+</p>
+{% endblock %}

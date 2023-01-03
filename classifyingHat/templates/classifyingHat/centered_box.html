@@ -1,0 +1,20 @@
+{% extends 'classifyingHat/base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'classifyingHat/centered_box.css' %}">
+{% block extra_css %}
+{% endblock %}
+{% endblock %}
+
+{% block content %}
+<div class="bg-image"></div>
+
+<div>
+    <img class="page-text-logo" src="{% static 'classifyingHat/text_logo.png' %}" alt="The Classifying Hat logo">
+</div>
+
+<div class="center">
+    {% block centered_content %}{% endblock %}
+</div>
+{% endblock %}

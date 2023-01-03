@@ -1,0 +1,80 @@
+form {
+    display: grid;
+
+    row-gap: 20px;
+    grid-auto-rows: 50px;
+}
+
+form label {
+    font-size: 50px;
+}
+
+form input {
+    background-color: #041c58;
+
+    border: none;
+    border-radius: 12px;
+
+    padding: 0 15px 0;
+
+    font-size: 30px;
+
+    width: 100%;
+    height: 100%;
+
+    transition: 0.5s;
+}
+
+form input:hover {
+    background-color: #011036;
+}
+
+form button {
+    font-size: 40px;
+
+    background-image: linear-gradient(90deg, #072672, #5f1e6f);
+
+    border: none;
+    border-radius: 12px;
+
+    box-shadow: 0px 0px 8px 2px;
+
+    width: 60%;
+
+    margin: auto;
+
+    transition: 0.2s;
+}
+
+form button:hover {
+    box-shadow: 0px 0px 8px 6px;
+}
+
+form button:active {
+    opacity: 80%;
+}
+
+p {
+    text-align: justify;
+}
+
+.tutorial {
+    font-size: 32px;
+}
+
+a:link {
+    color: #c5b419;
+    transition: 0.3s;
+}
+
+a:visited {
+    color: #c5b419;
+}
+
+a:hover {
+    opacity: 85%;
+}
+
+.article {
+    font-size: 25px;
+}
