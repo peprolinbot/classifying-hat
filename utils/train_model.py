@@ -7,9 +7,9 @@ from sklearn.naive_bayes import GaussianNB
 
 import joblib
 
-ONLY_OVER_18 = True
-MINIMUM_SCORE = 0.9
-TEST_SIZE = 0.12
+ONLY_OVER_18 = False
+MINIMUM_SCORE = 0.4
+TEST_SIZE = 0.25
 
 dataset = pd.read_csv('harry_all.csv', delimiter=';',)
 
