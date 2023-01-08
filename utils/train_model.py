@@ -8,13 +8,12 @@ from sklearn.naive_bayes import GaussianNB
 import joblib
 
 ONLY_OVER_18 = False
-MINIMUM_SCORE = 0.4
 TEST_SIZE = 0.25
 
 dataset = pd.read_csv('harry_all.csv', delimiter=';',)
 
 bigfive_column_keys = ['IPIP_Extraversion', 'IPIP_EmStability',
-                       'IPIP_Intellect',  'IPIP_Agreeableness', 'IPIP_Conscientiousness']  # Ordered as in bigfive-test.com (Openness to experience , Conscientiousness , Extraversion , Agreeableness and Neuroticism)
+                       'IPIP_Intellect',  'IPIP_Agreeableness', 'IPIP_Conscientiousness']  # With the bigfive-test.com naming, these are: Extraversion, Neuroticism, Openness to experience, Agreeableness and Conscientiousness
 
 
 # Remove rows with multiple houses or with invalid age (if ONLY_OVER_18 is True)
@@ -25,6 +24,8 @@ for index, row in dataset.iterrows():
         dataset = dataset.drop(index)
 
 # Calculate a list's boundaries, outside of these, a value is considered an outlier
+
+
 def get_bounds(data):
     q1, q3 = np.percentile(sorted(data), [25, 75])
 
@@ -40,6 +41,7 @@ def get_bounds(data):
 
     return bounds
 
+
 # Calculate boundaries for each house's personality traits
 house_groups = dataset.groupby('Sorting_house')
 house_bounds = {}
@@ -52,7 +54,7 @@ for name, group in house_groups:
 for index, row in dataset.iterrows():
     house = row['Sorting_house']
     bounds = house_bounds[house]
-    
+
     for key in bigfive_column_keys:
         trait_bounds = bounds[key]
         lower_bound = trait_bounds['lower_bound']
@@ -70,15 +72,13 @@ y = dataset['Sorting_house']
 X = X.values
 y = y.values
 
-score = 0
-while score < MINIMUM_SCORE:
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=TEST_SIZE)
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=TEST_SIZE, random_state=42)
 
-    clf = GaussianNB()
-    clf.fit(X_train, y_train)
+clf = GaussianNB()
+clf.fit(X_train, y_train)
 
-    score = clf.score(X_test, y_test)
-    print(f"Testing score: {score}")
+score = clf.score(X_test, y_test)
+print(f"Testing score: {score}")
 
 joblib.dump(clf, "model.pkl")
