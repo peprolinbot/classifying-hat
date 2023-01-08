@@ -21,7 +21,7 @@ bigfive_column_keys = ['IPIP_Extraversion', 'IPIP_EmStability',
 for index, row in dataset.iterrows():
     houses_number = len(row['Sorting_house'].split(';'))
     age = row['age']
-    if houses_number != 1 or (ONLY_OVER_18 and not age <= 18):
+    if houses_number != 1 or (ONLY_OVER_18 and age < 18):
         dataset = dataset.drop(index)
 
 # Calculate a list's boundaries, outside of these, a value is considered an outlier
