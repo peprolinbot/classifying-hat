@@ -4,11 +4,14 @@ import numpy as np
 
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
+from sklearn.model_selection import RepeatedStratifiedKFold
+from sklearn.model_selection import GridSearchCV
+
 
 import joblib
 
 ONLY_OVER_18 = False
-TEST_SIZE = 0.25
+TEST_SIZE = 0.2
 
 dataset = pd.read_csv('harry_all.csv', delimiter=';',)
 
@@ -75,10 +78,17 @@ y = y.values
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=TEST_SIZE, random_state=42)
 
-clf = GaussianNB()
-clf.fit(X_train, y_train)
 
-score = clf.score(X_test, y_test)
+param_grid = {'var_smoothing': np.logspace(0, -9, num=100)}
+
+clf = GaussianNB()
+clf_random = GridSearchCV(
+    estimator=clf, param_grid=param_grid, verbose=1, scoring='accuracy', n_jobs=-1)
+
+clf_random.fit(X_train, y_train) # {'var_smoothing': 0.15199110829529336}
+print(f"Best params: {clf_random.best_params_}")
+
+score = clf_random.score(X_test, y_test) # 0.4
 print(f"Testing score: {score}")
 
-joblib.dump(clf, "model.pkl")
+joblib.dump(clf_random, "model.pkl")
