@@ -85,4 +85,4 @@ This project is not endorsed by, directly affiliated with, maintained by, sponso
 
 - Logo gears: by [OpenClipart-Vectors](https://pixabay.com/users/openclipart-vectors-30363/) from [Pixabay](https://pixabay.com/vectors/cogwheel-gear-gearwheel-cog-145804/)
 
-- This uses the data collected in [_The Science Behind the Magic? The Relation of the Harry Potter “Sorting Hat Quiz” to Personality and Human Values_](https://online.ucpress.edu/collabra/article/5/1/31/113037/The-Science-Behind-the-Magic-The-Relation-of-the) by Lea Jakob, Eduardo Garcia-Garzon, Hannes Jarke, and Fabian Dablander
+- This uses the data collected in [_The Science Behind the Magic? The Relation of the Harry Potter “Sorting Hat Quiz” to Personality and Human Values_](https://doi.org/10.1525/collabra.240) by Lea Jakob, Eduardo Garcia-Garzon, Hannes Jarke, and Fabian Dablander. DOI: [doi.org/10.1525/collabra.240](https://doi.org/10.1525/collabra.240)
