@@ -71,7 +71,7 @@ Please check [Django's documentation](https://docs.djangoproject.com/en/4.1/).
 
 ## ⚠️ Disclaimer
 
-This project is not endorsed by, directly affiliated with, maintained by, sponsored by or in any way officially related with la Xunta de Galicia, the busoperators or any of the companies involved in the [bus.gal](https://www.bus.gal/) website and/or the [app](https://play.google.com/store/apps/details?id=galxunta.transportepublico).
+This project is not endorsed by, directly affiliated with, maintained by, sponsored by or in any way officially related with Wizarding World, Warner Bros, J. K. Rowling or any of the companies and individuals involved in the Harry Potter franchise.
 
 ## ❤️ Credits
 	
