@@ -10,6 +10,12 @@ Yeah, the name is a joke, beacause this uses what's known as a 'classifier' mode
 
 You can find an instance hosted by myself on [clashat.peprolinbot.com](https://clashat.peprolinbot.com).
 
+## 🧠 Train it
+
+Under `utils` you'll find the dataset (`harry_all.csv`), directly downloaded from [osf.io/rtf74](https://osf.io/rtf74/), and the script (`train_model.py`) that trains the ML moel (Gaussian Naive Bayes).
+
+To train the model, just run `train_model.py` from within the directory without any arguments. Once it finishes, you must move `model.pkl` to the root of the project.
+
 ## 🔧 How to Install
 
 ### 🐳 Docker (Recommended)
