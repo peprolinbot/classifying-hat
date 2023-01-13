@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from django.templatetags.static import static
 
@@ -31,3 +31,14 @@ def results(request, results_id):
     house_traits = ', '.join(all_house_traits[house_name.lower()])
 
     return render(request, 'classifyingHat/results.html', {'house_name': house_name, 'house_logo': house_logo, 'house_traits': house_traits})
+
+def get_results(request):
+    results_id = request.GET["results_id"]
+    results = get_test_results(results_id)
+    house_name = predict_house(**results)
+
+    house_logo = static(f'classifyingHat/house_logos/{house_name.lower()}.png')
+
+    house_traits = ', '.join(all_house_traits[house_name.lower()])
+
+    return JsonResponse({'house_name': house_name, 'house_logo': house_logo, 'house_traits': house_traits})
