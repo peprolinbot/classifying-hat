@@ -11,13 +11,7 @@ from .utils.house_traits import all_house_traits
 
 
 def index(request):
-    if request.method == 'POST':
-        form = ResultsIdForm(request.POST)
-        if form.is_valid():
-            results_id = form.cleaned_data['results_id']
-            return HttpResponseRedirect(reverse('classifyingHat:results', args=(results_id,)))
-    else:
-        form = ResultsIdForm()
+    form = ResultsIdForm()
 
     return render(request, 'classifyingHat/index.html', {'form': form})
 
