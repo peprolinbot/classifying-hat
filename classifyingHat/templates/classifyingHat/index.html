@@ -62,6 +62,7 @@
             $(".center").fadeOut(1000, 'linear', function () {
                 $("#form-div").hide();
                 $("#results-div").show();
+                $(".center").css('animation-delay', '0.5s');
                 $(".center").show();
                 window.history.pushState({}, '', '/results/'+formData.results_id);
             });
