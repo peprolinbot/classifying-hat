@@ -59,11 +59,11 @@
             $("#house_name").text(data.house_name);
             $("#house_logo").attr('src', data.house_logo);
             $("#house_traits").text(data.house_traits);
-            $(".center").hide();
-            $("#form-div").hide();
-            $("#results-div").show();
-            $(".center").show();
-            console.log(data);
+            $(".center").fadeOut(1000, 'linear', function () {
+                $("#form-div").hide();
+                $("#results-div").show();
+                $(".center").show();
+            });
         });
     });
 </script>

@@ -26,8 +26,7 @@ html {
     backdrop-filter: blur(10px);
     pointer-events: none;
 
-    opacity: 0%;
-    animation: fade-in 1.5s linear .5s 1 forwards;
+    animation: fade-in 1.5s linear .5s 1 backwards;
 }
 
 .page-text-logo {
@@ -41,8 +40,7 @@ html {
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
 
-    opacity: 0%;
-    animation: fade-in 1.5s linear 1s 1 forwards;
+    animation: fade-in 1.5s linear 1s 1 backwards;
 }
 
 footer {
@@ -54,8 +52,7 @@ footer {
 
     color: white;
 
-    opacity: 0%;
-    animation: fade-in 2s linear 4s 1 forwards;
+    animation: fade-in 2s linear 4s 1 backwards;
 }
 
 footer p {
@@ -102,8 +99,7 @@ footer a:hover {
 
     border-radius: 12px;
 
-    opacity: 0%;
-    animation: fade-in 2s linear 1.5s 1 forwards;
+    animation: fade-in 2s linear 1.5s 1 backwards;
 }
 
 /* Hide scrollbar for Chrome and webkit browsers */
