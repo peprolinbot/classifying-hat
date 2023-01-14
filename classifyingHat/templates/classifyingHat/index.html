@@ -63,6 +63,7 @@
                 $("#form-div").hide();
                 $("#results-div").show();
                 $(".center").show();
+                window.history.pushState({}, '', '/results/'+formData.results_id);
             });
         });
     });
