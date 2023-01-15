@@ -1,33 +1,19 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse
-from django.templatetags.static import static
 
 from .forms import ResultsIdForm
 
-from .utils.predict_house import predict_house
-from .utils.big_five_scraper import get_test_results
-from .utils.house_traits import all_house_traits
+from .utils.house_data import get_house_data
 
 
-def index(request):
-    if request.method == 'POST':
-        form = ResultsIdForm(request.POST)
-        if form.is_valid():
-            results_id = form.cleaned_data['results_id']
-            return HttpResponseRedirect(reverse('classifyingHat:results', args=(results_id,)))
-    else:
-        form = ResultsIdForm()
+def index(request, results_id=''):
+    form = ResultsIdForm()
 
-    return render(request, 'classifyingHat/index.html', {'form': form})
+    return render(request, 'classifyingHat/index.html', {'form': form, 'results_id': results_id})
 
+def get_results(request):
+    results_id = request.GET["results_id"]
+    data = get_house_data(results_id)
 
-def results(request, results_id):
-    results = get_test_results(results_id)
-    house_name = predict_house(**results)
-
-    house_logo = static(f'classifyingHat/house_logos/{house_name.lower()}.png')
-
-    house_traits = ', '.join(all_house_traits[house_name.lower()])
-
-    return render(request, 'classifyingHat/results.html', {'house_name': house_name, 'house_logo': house_logo, 'house_traits': house_traits})
+    return JsonResponse(data)

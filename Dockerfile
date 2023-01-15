@@ -14,6 +14,10 @@ WORKDIR /app
 RUN python manage.py collectstatic
 RUN chmod +x entrypoint.sh
 
+WORKDIR /app/utils
+RUN python train_model.py
+RUN mv model.pkl ..
+WORKDIR /app
 
 ENV DJANGO_DEBUG=false
 

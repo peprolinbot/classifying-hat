@@ -3,27 +3,92 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'classifyingHat/index.css' %}">
+<link rel="stylesheet" href="{% static 'classifyingHat/results.css' %}">
 {% endblock %}
 
 {% block centered_content %}
-<form action="/" method="post" class="hp-font">
-    {% csrf_token %}
-    {{ form }}
-    <button class="hp-font" type="submit">Submit</button>
-</form>
+<div id="form-div">
+    <form id="results-id-form" class="hp-font">
+        {{ form }}
+        <button class="hp-font" type="submit">Submit</button>
+    </form>
 
-<p class="tutorial hp-font">Enter your results id for the open-source BigFive personality test. You can take it <a
-        href="https://bigfive-test.com" target="_blank">here</a>.</p>
+    <p class="tutorial hp-font">Enter your results id for the open-source BigFive personality test. You can take it <a
+            href="https://bigfive-test.com" target="_blank">here</a>.</p>
 
-<p class="article hp-font">Yeah, the name is a joke, beacause this uses what's known as a 'classifier' model. If you're
-    a muggle
-    (you don't know the magic spells of coding and probably use Windows or MacOS) you could say this is Hacendado's
-    Sorting Hat.</p>
-<p class="article hp-font">This uses the data collected in
-    <a href="https://online.ucpress.edu/collabra/article/5/1/31/113037/The-Science-Behind-the-Magic-The-Relation-of-the"
-        target="_blank">The Science Behind the Magic? The Relation of the Harry Potter
-        “Sorting Hat Quiz” to Personality and Human
-        Values</a>
-    by Lea Jakob, Eduardo Garcia-Garzon, Hannes Jarke, and Fabian Dablander.
-</p>
+    <p class="article hp-font">Yeah, the name is a joke, beacause this uses what's known as a 'classifier' model. If
+        you're
+        a muggle
+        (you don't know the magic spells of coding and probably use Windows or MacOS) you could say this is Hacendado's
+        Sorting Hat.</p>
+    <p class="article hp-font">This uses the data collected in
+        <a href="https://online.ucpress.edu/collabra/article/5/1/31/113037/The-Science-Behind-the-Magic-The-Relation-of-the"
+            target="_blank">The Science Behind the Magic? The Relation of the Harry Potter
+            “Sorting Hat Quiz” to Personality and Human
+            Values</a>
+        by Lea Jakob, Eduardo Garcia-Garzon, Hannes Jarke, and Fabian Dablander.
+    </p>
+</div>
+
+<!-- Results -->
+<div id="results-div" style="display: none">
+    <h1 id="house_name" class="hp-font house-name"></h1>
+
+    <div class="house-logo">
+        <img id="house_logo" class="house-logo" src="" alt="House logo">
+    </div>
+
+    <p id="house_traits" class="hp-font house-traits"></p>
+</div>
+
+<script>
+    function show_results(results_id) {
+        $.ajax({
+            type: "GET",
+            url: "{% url 'classifyingHat:get_results' %}",
+            data: {results_id: results_id},
+            dataType: "json",
+            encode: true,
+        }).done(function (data) {
+            $("#house_name").text(data.house_name);
+            $("#house_logo").attr('src', data.house_logo);
+            $("#house_traits").text(data.house_traits);
+            $(".center").fadeOut(1000, 'linear', function () {
+                $("#form-div").hide();
+                $("#results-div").show();
+                $(".center").show();
+            });
+        });
+    }
+
+    $("#results-id-form").submit(function (event) {
+        event.preventDefault();
+
+        results_id = $("#id_results_id").val();
+
+        $(".center").css('animation-delay', '0.5s');
+        show_results(results_id);
+        window.history.pushState({'results': true}, '', '/results/'+results_id);
+    });
+
+    window.addEventListener('popstate', (event) => {
+        $(".center").fadeOut(1000, 'linear', function () {
+                $("#form-div").hide();
+                $("#results-div").hide();
+                if (event.state && event.state.results) {
+                    $("#results-div").show();
+                } else {
+                    $("#form-div").show();
+                }
+                $(".center").css('animation-delay', '0.5s');
+                $(".center").show();
+            });
+    });
+
+    if ("{{ results_id }}") {
+        $(".center").hide(); // to avoid delays with the HTTP request
+        show_results("63b07e312126720008ce48ea");
+    }
+
+</script>
 {% endblock %}

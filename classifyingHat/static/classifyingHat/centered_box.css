@@ -25,6 +25,8 @@ html {
     height: 100%;
     backdrop-filter: blur(10px);
     pointer-events: none;
+
+    animation: fade-in 1.5s linear .5s 1 backwards;
 }
 
 .page-text-logo {
@@ -37,6 +39,8 @@ html {
 
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
+
+    animation: fade-in 1.5s linear 1s 1 backwards;
 }
 
 footer {
@@ -47,6 +51,8 @@ footer {
     margin-bottom: 4px;
 
     color: white;
+
+    animation: fade-in 2s linear 4s 1 backwards;
 }
 
 footer p {
@@ -92,6 +98,8 @@ footer a:hover {
     background-image: linear-gradient(45deg, #05277eb0, #401b70b0);
 
     border-radius: 12px;
+
+    animation: fade-in 2s linear 1.5s 1 backwards;
 }
 
 /* Hide scrollbar for Chrome and webkit browsers */
@@ -118,3 +126,8 @@ footer a:hover {
     font-weight: bold;
     color: darkgoldenrod;
 }
+
+@keyframes fade-in {
+    from {opacity: 0%;}
+    to {opacity: 100%;}
+  }
