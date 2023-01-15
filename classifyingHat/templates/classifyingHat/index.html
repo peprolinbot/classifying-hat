@@ -42,17 +42,11 @@
 </div>
 
 <script>
-    $("#results-id-form").submit(function (event) {
-        event.preventDefault();
-
-        var formData = {
-            results_id: $("#id_results_id").val(),
-        };
-
+    function show_results(results_id) {
         $.ajax({
             type: "GET",
             url: "{% url 'classifyingHat:get_results' %}",
-            data: formData,
+            data: {results_id: results_id},
             dataType: "json",
             encode: true,
         }).done(function (data) {
@@ -62,25 +56,39 @@
             $(".center").fadeOut(1000, 'linear', function () {
                 $("#form-div").hide();
                 $("#results-div").show();
-                $(".center").css('animation-delay', '0.5s');
                 $(".center").show();
-                window.history.replaceState({'results': false}, '');
-                window.history.pushState({'results': true}, '', '/results/'+formData.results_id);
             });
         });
+    }
+
+    $("#results-id-form").submit(function (event) {
+        event.preventDefault();
+
+        results_id = $("#id_results_id").val();
+
+        $(".center").css('animation-delay', '0.5s');
+        show_results(results_id);
+        window.history.pushState({'results': true}, '', '/results/'+results_id);
     });
 
     window.addEventListener('popstate', (event) => {
         $(".center").fadeOut(1000, 'linear', function () {
                 $("#form-div").hide();
                 $("#results-div").hide();
-                if (event.state.results) {
+                if (event.state && event.state.results) {
                     $("#results-div").show();
                 } else {
                     $("#form-div").show();
                 }
+                $(".center").css('animation-delay', '0.5s');
                 $(".center").show();
             });
     });
+
+    if ("{{ results_id }}") {
+        $(".center").hide(); // to avoid delays with the HTTP request
+        show_results("63b07e312126720008ce48ea");
+    }
+
 </script>
 {% endblock %}
