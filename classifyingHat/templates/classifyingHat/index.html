@@ -64,9 +64,23 @@
                 $("#results-div").show();
                 $(".center").css('animation-delay', '0.5s');
                 $(".center").show();
-                window.history.pushState({}, '', '/results/'+formData.results_id);
+                window.history.replaceState({'results': false}, '');
+                window.history.pushState({'results': true}, '', '/results/'+formData.results_id);
             });
         });
+    });
+
+    window.addEventListener('popstate', (event) => {
+        $(".center").fadeOut(1000, 'linear', function () {
+                $("#form-div").hide();
+                $("#results-div").hide();
+                if (event.state.results) {
+                    $("#results-div").show();
+                } else {
+                    $("#form-div").show();
+                }
+                $(".center").show();
+            });
     });
 </script>
 {% endblock %}
