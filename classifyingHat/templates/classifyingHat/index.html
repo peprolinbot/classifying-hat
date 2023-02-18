@@ -46,10 +46,11 @@
         $.ajax({
             type: "GET",
             url: "{% url 'classifyingHat:get_results' %}",
-            data: {results_id: results_id},
+            data: { results_id: results_id },
             dataType: "json",
             encode: true,
         }).done(function (data) {
+            window.history.pushState({ 'results': true }, '', '/results/' + results_id);
             $("#house_name").text(data.house_name);
             $("#house_logo").attr('src', data.house_logo);
             $("#house_traits").text(data.house_traits);
@@ -58,6 +59,9 @@
                 $("#results-div").show();
                 $(".center").show();
             });
+        }).fail(function (jqXHR) {
+            var data = jqXHR.responseJSON;
+            alert(data.error);
         });
     }
 
@@ -68,27 +72,27 @@
 
         $(".center").css('animation-delay', '0.5s');
         show_results(results_id);
-        window.history.pushState({'results': true}, '', '/results/'+results_id);
     });
 
     window.addEventListener('popstate', (event) => {
         $(".center").fadeOut(1000, 'linear', function () {
-                $("#form-div").hide();
-                $("#results-div").hide();
-                if (event.state && event.state.results) {
-                    $("#results-div").show();
-                } else {
-                    $("#form-div").show();
-                }
-                $(".center").css('animation-delay', '0.5s');
-                $(".center").show();
-            });
+            $("#form-div").hide();
+            $("#results-div").hide();
+            if (event.state && event.state.results) {
+                $("#results-div").show();
+            } else {
+                $("#form-div").show();
+            }
+            $(".center").css('animation-delay', '0.5s');
+            $(".center").show();
+        });
     });
 
     if ("{{ results_id }}") {
         $(".center").hide(); // to avoid delays with the HTTP request
         show_results("{{ results_id }}");
     }
+
 
 </script>
 {% endblock %}
