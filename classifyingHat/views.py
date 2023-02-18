@@ -14,6 +14,9 @@ def index(request, results_id=''):
 
 def get_results(request):
     results_id = request.GET["results_id"]
-    data = get_house_data(results_id)
+    try:
+        data = get_house_data(results_id)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
 
     return JsonResponse(data)
