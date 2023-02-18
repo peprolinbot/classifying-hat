@@ -25,7 +25,7 @@ If you want to host your own instance of the web, it is as easy as a docker cont
 So the command is:
  
 ```bash
-docker run -d --name bus.gal-web \
+docker run -d --name classifying-hat \
     -e DJANGO_ALLOWED_HOSTS="example.com" \
     -e DJANGO_SECRET_KEY="changemetosomethingsecureplease" \
     -p 8080:80 \
